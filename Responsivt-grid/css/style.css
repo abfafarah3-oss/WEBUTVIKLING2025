@@ -4,11 +4,19 @@
     --aside: #e8dfca;   /* Bakgrunnsfarge for sideinnhold (aside) */
     --header: #cbdceb;  /* Bakgrunnsfarge for header */
     --footer: #6d94c5;  /* Bakgrunnsfarge for footer */
+
+    --small: clamp(14px, 1em + 1vw, 18px);
+    --medium: clamp(16px, 1em + 1vw, 20px);
+    --large: clamp(18px, 1em + 1vw, 24px);
 }
 
 /* Setter boks-modellen til å inkludere padding og border i total bredde/høyde */
 *{
     box-sizing: border-box;
+}
+
+html{
+    font-size: clamp(16px, 1em + 1vw, 30px);
 }
 
 /* Grunnoppsett for body */
@@ -17,6 +25,7 @@ body{
     margin: 0;        /* Fjerner standard margin */
     min-height: 100vh;/* Sørger for at body dekker hele høyden på skjermen */
     display: flex;    /* Flex gjør at grid-container kan strekke seg */
+    font-size: 1rem;
 }
 
 /* Hovedcontainer for grid-layout */
@@ -29,6 +38,16 @@ body{
                          "sideinnhold" 
                          "bunn";  /* Definerer grid-områder for små skjermer */
 }
+/*
+h1{
+    font-size: var(--large);
+}
+h2{
+    font-size: var(--medium);
+}
+h3{
+    font-size: var(--small);
+}*/
 
 /* Felles stil for header, main, aside og footer */
 header,main,aside,footer{
@@ -39,6 +58,19 @@ header,main,aside,footer{
 header{
     background-color: var(--header);
     grid-area: topp;
+
+    nav{
+        ul{
+            list-style: none;
+
+            li{
+                a{
+                    text-decoration: none;
+                    color: #000;
+                }
+            }
+        }
+    }
 }
 
 /* Main plasseres i "hovedinnhold" */
@@ -62,6 +94,11 @@ footer{
 /* Klassen .hidden skjuler elementer (brukes av JS) */
 .hidden{
     display: none;
+}
+
+img{
+    width: 100%;
+    max-width: 900px;
 }
 
 /* --- RESPONSIV DESIGN: SKJERMER UNDER 600px --- */
@@ -111,6 +148,10 @@ footer{
 
     /* Hamburger-knappen skjules på større skjermer */
     #ham{
+        display: none;
+    }
+
+    #close{
         display: none;
     }
 
